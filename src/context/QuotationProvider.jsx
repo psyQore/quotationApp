@@ -8,6 +8,7 @@ const QuotationProvider = ({ children }) => {
     year: "",
     plan: "",
   });
+  const [error, setError] = useState("");
 
   const handleChangeData = (e) => {
     setData({
@@ -17,7 +18,14 @@ const QuotationProvider = ({ children }) => {
   };
 
   return (
-    <QuotationContext.Provider value={{ data, handleChangeData }}>
+    <QuotationContext.Provider
+      value={{ 
+        data, 
+        handleChangeData, 
+        error, 
+        setError 
+    }}
+    >
       {children}
     </QuotationContext.Provider>
   );

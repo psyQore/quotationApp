@@ -1,14 +1,30 @@
 import { Fragment } from "react";
 import { BRANDS, YEARS, PLANS } from "../constans";
 import useQuotation from "../hooks/useQuotation";
+import Error from "./Error";
 
 const Form = () => {
-  const { data, handleChangeData } = useQuotation();
-
+  const { data, handleChangeData, error, setError } = useQuotation();
   const { brand, year } = data;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (Object.values(data).includes("")) {
+      setError("Todos los campos son obligatorios");
+      return;
+    }
+
+    setError("");
+    
+    // TODO: Cotrizar
+
+  };
+
   return (
     <>
-      <form>
+      {error && <Error />}
+      <form onSubmit={handleSubmit}>
         <div className="my-5">
           <label className="block mb-3 font-bold text-gray-400 uppercase">
             Marca

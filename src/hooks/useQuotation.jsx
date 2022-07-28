@@ -1,9 +1,8 @@
-import { useContext } from 'react';
-import QuotationContext from '../context/QuotationProvider';
+import { useContext } from "react";
+import QuotationContext from "../context/QuotationProvider";
 
-const useQuotation = () => {   
-    return useContext(QuotationContext);
-    
-}
+const useQuotation = () => {
+  return useContext(QuotationContext);
+};
 
-export default useQuotation
+export default useQuotation;
