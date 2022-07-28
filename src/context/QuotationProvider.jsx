@@ -59,6 +59,7 @@ const QuotationProvider = ({ children }) => {
         error,
         setError,
         quoteInsurance,
+        result
       }}
     >
       {children}
