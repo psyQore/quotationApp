@@ -1,5 +1,10 @@
 import { useState, createContext } from "react";
-import { makeTheDifferenceYear } from "../helpers";
+import {
+  makeTheDifferenceYear,
+  calculateBrand,
+  calculatePlan,
+  formatMoney,
+} from "../helpers";
 
 const QuotationContext = createContext();
 
@@ -10,6 +15,7 @@ const QuotationProvider = ({ children }) => {
     plan: "",
   });
   const [error, setError] = useState("");
+  const [result, setResult] = useState(0);
 
   // Leer inputs
   const handleChangeData = (e) => {
@@ -27,18 +33,22 @@ const QuotationProvider = ({ children }) => {
     // Diferencia de años
     const difference = makeTheDifferenceYear(data.year);
 
-    console.log(difference);
-
     // Hay que restar el 3% por año
     result -= (difference * 3 * result) / 100;
-    console.log(result);
 
     // Americano 15%
     // Europeo 30%
     // Asiatico 5%
+    result *= calculateBrand(data.brand);
 
     // Basico 20%
     // Completo 50%
+    result *= calculatePlan(data.plan);
+
+    // Formatear Dinero
+    result = formatMoney(result);
+
+    setResult(result);
   };
 
   return (
