@@ -16,6 +16,7 @@ const QuotationProvider = ({ children }) => {
   });
   const [error, setError] = useState("");
   const [result, setResult] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   // Leer inputs
   const handleChangeData = (e) => {
@@ -36,19 +37,21 @@ const QuotationProvider = ({ children }) => {
     // Hay que restar el 3% por año
     result -= (difference * 3 * result) / 100;
 
-    // Americano 15%
-    // Europeo 30%
-    // Asiatico 5%
+    // Americano 15%, Europeo 30%, Asiatico 5%
     result *= calculateBrand(data.brand);
 
-    // Basico 20%
-    // Completo 50%
+    // Basico 20%, Completo 50%
     result *= calculatePlan(data.plan);
 
     // Formatear Dinero
     result = formatMoney(result);
 
-    setResult(result);
+    setLoading(true);
+
+    setTimeout(() => {
+      setResult(result);
+      setLoading(false);
+    }, 3000);
   };
 
   return (
@@ -59,7 +62,8 @@ const QuotationProvider = ({ children }) => {
         error,
         setError,
         quoteInsurance,
-        result
+        result,
+        loading,
       }}
     >
       {children}

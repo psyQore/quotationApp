@@ -1,10 +1,11 @@
 import React from "react";
 import Form from "./Form";
 import useQuotation from "../hooks/useQuotation";
+import Spinner from "./Spinner";
+import Result from "../components/Result";
 
 const AppSecure = () => {
-
-  const { result } = useQuotation();
+  const { result, loading } = useQuotation();
 
   return (
     <>
@@ -14,9 +15,9 @@ const AppSecure = () => {
         </h1>
       </header>
       <main className="bg-white md:w-2/3 lg:w-2/4 mx-auto shadow rounded-xl p-10">
-        <Form/>
+        <Form />
 
-        {result}
+        {loading ? <Spinner /> : <Result />}
       </main>
     </>
   );
