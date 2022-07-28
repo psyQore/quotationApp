@@ -4,7 +4,13 @@ import useQuotation from "../hooks/useQuotation";
 import Error from "./Error";
 
 const Form = () => {
-  const { data, handleChangeData, error, setError } = useQuotation();
+  const { 
+    data, 
+    handleChangeData, 
+    error, 
+    setError, 
+    quoteInsurance } = useQuotation();
+
   const { brand, year } = data;
 
   const handleSubmit = (e) => {
@@ -16,9 +22,9 @@ const Form = () => {
     }
 
     setError("");
-    
-    // TODO: Cotrizar
 
+    // TODO: Cotrizar
+    quoteInsurance();
   };
 
   return (
