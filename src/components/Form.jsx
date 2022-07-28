@@ -1,7 +1,11 @@
 import { Fragment } from "react";
 import { BRANDS, YEARS, PLANS } from "../constans";
+import useQuotation from "../hooks/useQuotation";
 
 const Form = () => {
+  const { data, handleChangeData } = useQuotation();
+
+  const { brand, year } = data;
   return (
     <>
       <form>
@@ -12,10 +16,12 @@ const Form = () => {
           <select
             name="brand"
             className="w-full p-3 bg-white border border-gray-200"
+            onChange={(e) => handleChangeData(e)}
+            value={brand}
           >
             <option value="">-- Selecciona Marca --</option>
             {BRANDS.map((brand) => (
-              <option key={brand.id} value={brand.idx}>
+              <option key={brand.id} value={brand.id}>
                 {brand.name}
               </option>
             ))}
@@ -27,8 +33,10 @@ const Form = () => {
             Año
           </label>
           <select
-            name="brand"
+            name="year"
             className="w-full p-3 bg-white border border-gray-200"
+            onChange={(e) => handleChangeData(e)}
+            value={year}
           >
             <option value="">-- Selecciona Año --</option>
             {YEARS.map((year) => (
@@ -47,7 +55,12 @@ const Form = () => {
             {PLANS.map((plan) => (
               <Fragment key={plan.id}>
                 <label>{plan.name}</label>
-                <input type="radio" name="plan" value={plan.id} />
+                <input
+                  type="radio"
+                  name="plan"
+                  value={plan.id}
+                  onChange={(e) => handleChangeData(e)}
+                />
               </Fragment>
             ))}
           </div>
@@ -55,7 +68,8 @@ const Form = () => {
 
         <input
           type="submit"
-          className="w-full bg-indigo-500 hover:bg-indigo-600 transition-colors text-white cursor-pointer p-3 uppercase font-bold" value="Cotizar"
+          className="w-full bg-indigo-500 hover:bg-indigo-600 transition-colors text-white cursor-pointer p-3 uppercase font-bold"
+          value="Cotizar"
         />
       </form>
     </>

@@ -1,20 +1,28 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 
 const QuotationContext = createContext();
 
 const QuotationProvider = ({ children }) => {
+  const [data, setData] = useState({
+    brand: "",
+    year: "",
+    plan: "",
+  });
 
-    return(
-        <QuotationContext.Provider 
-        value={{}}
-        >
-            {children}
-        </QuotationContext.Provider>
-    )
-}
+  const handleChangeData = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-export {
-    QuotationProvider
-}
+  return (
+    <QuotationContext.Provider value={{ data, handleChangeData }}>
+      {children}
+    </QuotationContext.Provider>
+  );
+};
 
-export default QuotationContext
+export { QuotationProvider };
+
+export default QuotationContext;
