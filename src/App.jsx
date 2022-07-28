@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import AppSecure from './components/AppSecure'
+import { QuotationProvider } from "./context/QuotationProvider";
+import AppSecure from "./components/AppSecure";
 
 function App() {
-
   return (
-    <div>
-      <AppSecure/>
-    </div>
-  )
+    <QuotationProvider>
+      <AppSecure />
+    </QuotationProvider>
+  );
 }
 
-export default App
+export default App;
