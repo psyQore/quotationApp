@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import AppSecure from './components/AppSecure'
 
 function App() {
 
   return (
     <div>
-      <h1>App</h1>
+      <AppSecure/>
     </div>
   )
 }
