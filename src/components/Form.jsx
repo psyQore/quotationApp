@@ -4,12 +4,8 @@ import useQuotation from "../hooks/useQuotation";
 import Error from "./Error";
 
 const Form = () => {
-  const { 
-    data, 
-    handleChangeData, 
-    error, 
-    setError, 
-    quoteInsurance } = useQuotation();
+  const { data, handleChangeData, error, setError, quoteInsurance } =
+    useQuotation();
 
   const { brand, year } = data;
 

@@ -1,15 +1,20 @@
-import React from "react";
+import { useCallback, useRef } from "react";
 import useQuotation from "../hooks/useQuotation";
 import { BRANDS, PLANS } from "../constans";
 
 const Result = () => {
   const { result, data } = useQuotation();
   const { brand, year, plan } = data;
+  const yearRef = useRef(year);
 
-  const [nameBrand] = BRANDS.filter((m) => m.id === Number(brand));
-  const [namePlan] = PLANS.filter((p) => p.id === Number(plan));
-
-  console.log(namePlan);
+  const [nameBrand] = useCallback(
+    BRANDS.filter((m) => m.id === Number(brand)),
+    [result]
+  );
+  const [namePlan] = useCallback(
+    PLANS.filter((p) => p.id === Number(plan)),
+    [result]
+  );
 
   if (result === 0) return null;
 
@@ -28,7 +33,7 @@ const Result = () => {
 
       <p className="my-2">
         <span className="font-bold">Año del Auto: </span>
-        {year}
+        {yearRef.current}
       </p>
 
       <p className="my-2 text-2xl">
