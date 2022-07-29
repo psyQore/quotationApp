@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useMemo, useRef } from "react";
 import useQuotation from "../hooks/useQuotation";
 import { BRANDS, PLANS } from "../constans";
 
@@ -7,12 +7,12 @@ const Result = () => {
   const { brand, year, plan } = data;
   const yearRef = useRef(year);
 
-  const [nameBrand] = useCallback(
-    BRANDS.filter((m) => m.id === Number(brand)),
+  const [nameBrand] = useMemo(
+    () => BRANDS.filter((m) => m.id === Number(brand)),
     [result]
   );
-  const [namePlan] = useCallback(
-    PLANS.filter((p) => p.id === Number(plan)),
+  const [namePlan] = useMemo(
+    () => PLANS.filter((p) => p.id === Number(plan)),
     [result]
   );
 

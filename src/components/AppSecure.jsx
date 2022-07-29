@@ -14,7 +14,7 @@ const AppSecure = () => {
           Cotizador de Seguros
         </h1>
       </header>
-      <main className="bg-white md:w-2/3 lg:w-2/4 mx-auto shadow rounded-xl p-10">
+      <main className="bg-white md:w-2/3 mx-3 sm:mx-auto lg:w-2/4 mx-3 shadow rounded-xl p-10 ">
         <Form />
 
         {loading ? <Spinner /> : <Result />}

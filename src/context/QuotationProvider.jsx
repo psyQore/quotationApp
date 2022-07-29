@@ -51,7 +51,7 @@ const QuotationProvider = ({ children }) => {
     setTimeout(() => {
       setResult(result);
       setLoading(false);
-    }, 500);
+    }, 2000);
   };
 
   return (
